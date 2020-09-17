@@ -157,7 +157,10 @@ build_options = {
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/lib/python3.5/site-packages/UM/Qt/qml/UM", "qml/UM"),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/share/cura/resources", "resources"),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/share/uranium/resources", "resources"),
-        ("@CMAKE_PREFIX_PATH@/bin/openctm.dll", ""), # For opening .CTM files
+        # ("@CMAKE_PREFIX_PATH@/bin/openctm.dll", ""), # For opening .CTM files
+		###
+		("E:/NewCura2/cura-build-environment/install_dir/bin/openctm.dll", ""),
+		### modify by wucw
         # Preinstalled PyQt5 installation
         (PyQt5.__path__[0] + "/Qt/qml/Qt", "qml/Qt"),
         (PyQt5.__path__[0] + "/Qt/qml/QtQml", "qml/QtQml"),
@@ -173,24 +176,24 @@ build_options = {
 executables = [
     Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
                base="Win32GUI",
-               targetName = "Cura.exe",
+               targetName = "DFStarter.exe",
                icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
                ),
     Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
                base="Console",
-               targetName = "CuraCLI.exe",
+               targetName = "DFStarterCLI.exe",
                icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
                ),
     
 ]
 
 setup(
-    name = "Ultimaker Cura",
+    name = "Dazzle DFStarter",
     version = "@CURA_VERSION_MAJOR@.@CURA_VERSION_MINOR@.@CURA_VERSION_PATCH@",
-    description = "Ultimaker Cura",
-    long_description = "Ultimaker Cura - 3D Printing Software",
-    author = "Ultimaker B.V.",
-    url = "http://software.ultimaker.com/",
+    description = "Dazzle DFStarter",
+    long_description = "Dazzle DFStarter - 3D Printing Software",
+    author = "Dazzle",
+    # url = "http://software.ultimaker.com/",
     license = "GNU LESSER GENERAL PUBLIC LICENSE (LGPL)",
 
     options = {"build_exe": build_options},

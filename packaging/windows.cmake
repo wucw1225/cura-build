@@ -48,31 +48,32 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/package/
         COMPONENT "_cura" # Note: _ prefix is necessary to make sure the Cura component is always listed first
 )
 
-if(CPACK_GENERATOR MATCHES "NSIS64" OR CPACK_GENERATOR MATCHES "NSIS")
+set(CPACK_GENERATOR WIX)
+#if(CPACK_GENERATOR MATCHES "NSIS64" OR CPACK_GENERATOR MATCHES "NSIS")
     # Only NSIS needs to have arduino and vcredist
-    install(DIRECTORY ${EXTERNALPROJECT_INSTALL_PREFIX}/arduino
-            DESTINATION "."
-            COMPONENT "arduino"
-    )
+#    install(DIRECTORY ${EXTERNALPROJECT_INSTALL_PREFIX}/arduino
+#            DESTINATION "."
+#            COMPONENT "arduino"
+#    )
 
-    install(FILES ${EXTERNALPROJECT_INSTALL_PREFIX}/vcredist_x64.exe
-            DESTINATION "."
-            COMPONENT "vcredist"
-    )
+#    install(FILES ${EXTERNALPROJECT_INSTALL_PREFIX}/vcredist_x64.exe
+#            DESTINATION "."
+#            COMPONENT "vcredist"
+#    )
 
-    set(CPACK_NSIS_PACKAGE_ARCHITECTURE "64")
+#    set(CPACK_NSIS_PACKAGE_ARCHITECTURE "64")
 
-    include(packaging/cpackconfig_nsis.cmake)
-    include(CPack)
+#    include(packaging/cpackconfig_nsis.cmake)
+#    include(CPack)
 
-    add_custom_command(
-        TARGET build_bundle POST_BUILD
+#    add_custom_command(
+#        TARGET build_bundle POST_BUILD
         # NOTE: Needs testing here, whether CPACK_SYSTEM_NAME is working good for 64bit builds, too.
-        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/NSIS "${CMAKE_CURRENT_BINARY_DIR}/_CPack_Packages/${CPACK_SYSTEM_NAME}/NSIS"
-        COMMENT "Copying NSIS scripts from [${CMAKE_SOURCE_DIR}/NSIS] to [${CMAKE_CURRENT_BINARY_DIR}/_CPack_Packages/${CPACK_SYSTEM_NAME}/NSIS]"
-    )
+#        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/NSIS "${CMAKE_CURRENT_BINARY_DIR}/_CPack_Packages/${CPACK_SYSTEM_NAME}/NSIS"
+#        COMMENT "Copying NSIS scripts from [${CMAKE_SOURCE_DIR}/NSIS] to [${CMAKE_CURRENT_BINARY_DIR}/_CPack_Packages/${CPACK_SYSTEM_NAME}/NSIS]"
+#    )
 
-elseif(CPACK_GENERATOR MATCHES "WIX")
+#elseif(CPACK_GENERATOR MATCHES "WIX")
     include(packaging/cpackconfig_wix.cmake)
     include(CPack)
-endif()
+#endif()

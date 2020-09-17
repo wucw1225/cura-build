@@ -6,7 +6,8 @@ option(CURA_ENABLE_DEBUGMODE "Enable crash handler and other debug options in Cu
 string(REPLACE ";" "," _cura_no_install_plugins "${CURA_NO_INSTALL_PLUGINS}")
 
 ExternalProject_Add(Cura
-    GIT_REPOSITORY https://github.com/wucw1225/Cura
+    GIT_REPOSITORY https://github.com/wucw1225/DFStarter
+	#GIT_REPOSITORY https://github.com/Ultimaker/Cura
     GIT_TAG origin/${CURA_BRANCH_OR_TAG}
     GIT_SHALLOW 1
     STEP_TARGETS update
